@@ -35,14 +35,16 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-            <a href="{{ route('dashboard.employee.index') }}"
-                class="flex items-center space-x-3 px-4 py-2 text-sm font-semibold rounded-md hover:bg-yellow-100 {{ Route::is('dashboard.employee.*') ? 'bg-gray-100 text-gray-800 animate-pulse' : 'text-white hover:text-gray-800' }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-people-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                </svg>
-                <span>Data Pegawai</span>
+            @can('manage-employee')
+                <a href="{{ route('dashboard.employee.index') }}"
+                    class="flex items-center space-x-3 px-4 py-2 text-sm font-semibold rounded-md hover:bg-yellow-100 {{ Route::is('dashboard.employee.*') ? 'bg-gray-100 text-gray-800 animate-pulse' : 'text-white hover:text-gray-800' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-people-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                    </svg>
+                    <span>Data Pegawai</span>
+                @endcan
             </a>
         </div>
 
@@ -69,18 +71,20 @@
                 </svg>
                 <span>Input Presensi</span>
             </a>
-            <a href="{{ route('dashboard.attendance.index') }}"
-                class="flex items-center space-x-3 px-4 py-2 text-sm font-semibold rounded-md hover:bg-yellow-100 {{ Route::is('dashboard.attendance.*') ? 'bg-gray-100 text-gray-800 animate-pulse' : 'text-white hover:text-gray-800' }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                    <path
-                        d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0z" />
-                    <path
-                        d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
-                    <path
-                        d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
-                </svg>
-                <span>Kelola Presensi</span>
+            @can('manage-attendance')
+                <a href="{{ route('dashboard.attendance.index') }}"
+                    class="flex items-center space-x-3 px-4 py-2 text-sm font-semibold rounded-md hover:bg-yellow-100 {{ Route::is('dashboard.attendance.*') ? 'bg-gray-100 text-gray-800 animate-pulse' : 'text-white hover:text-gray-800' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path
+                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0z" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+                    </svg>
+                    <span>Kelola Presensi</span>
+                @endcan
             </a>
         </div>
     </nav>

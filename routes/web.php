@@ -13,7 +13,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'authenticate'])->middleware('throttle:5,5')->name('authenticate');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'active_user'])->group(function () {
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->middleware('throttle:5,5')->name('logout');
 

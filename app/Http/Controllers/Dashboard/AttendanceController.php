@@ -8,12 +8,18 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class AttendanceController extends Controller
 {
     public function index(Request $request)
     {
+        // Cek akses
+        if (Gate::denies('manage-attendance')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Validasi Search Form
         $validated = $request->validate([
             'status' => 'nullable|string|in:Aktif,Pensiun,Meninggal Dunia,Diberhentikan',
@@ -57,6 +63,11 @@ class AttendanceController extends Controller
 
     public function show(string $nrp)
     {
+        // Cek akses
+        if (Gate::denies('manage-attendance')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil data pegawai + relasi attendances
         $employee = Employee::with('attendances')->where('nrp', $nrp)->firstOrFail();
 
@@ -70,6 +81,11 @@ class AttendanceController extends Controller
 
     public function store(Request $request, string $nrp)
     {
+        // Cek akses
+        if (Gate::denies('manage-attendance')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Cari pegawai berdasarkan NRP
         $employee = Employee::where('nrp', $nrp)->firstOrFail();
 
@@ -111,6 +127,11 @@ class AttendanceController extends Controller
 
     public function update(Request $request, string $nrp, int $attendanceId)
     {
+        // Cek akses
+        if (Gate::denies('manage-attendance')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Cari pegawai berdasarkan NRP
         $employee = Employee::where('nrp', $nrp)->firstOrFail();
 
@@ -157,6 +178,11 @@ class AttendanceController extends Controller
 
     public function destroy(string $nrp, int $attendanceId)
     {
+        // Cek akses
+        if (Gate::denies('manage-attendance')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Cari pegawai
         $employee = Employee::where('nrp', $nrp)->firstOrFail();
 

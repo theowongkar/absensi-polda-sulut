@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,11 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
+        // Cek akses
+        if (Gate::denies('manage-employee')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Validasi Search Form
         $validated = $request->validate([
             'status' => 'nullable|string|in:Aktif,Pensiun,Meninggal Dunia,Diberhentikan',
@@ -56,11 +62,21 @@ class EmployeeController extends Controller
 
     public function create()
     {
+        // Cek akses
+        if (Gate::denies('manage-employee')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         return view('dashboard.employees.create');
     }
 
     public function store(Request $request)
     {
+        // Cek akses
+        if (Gate::denies('manage-employee')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Validasi Input
         $validated = $request->validate(
             [
@@ -125,6 +141,11 @@ class EmployeeController extends Controller
 
     public function edit(string $nrp)
     {
+        // Cek akses
+        if (Gate::denies('manage-employee')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil data pegawai berdasarkan NRP
         $employee = Employee::where('nrp', $nrp)->firstOrFail();
 
@@ -133,6 +154,11 @@ class EmployeeController extends Controller
 
     public function update(Request $request, string $nrp)
     {
+        // Cek akses
+        if (Gate::denies('manage-employee')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil employee berdasarkan NRP
         $employee = Employee::where('nrp', $nrp)->firstOrFail();
 
@@ -206,6 +232,11 @@ class EmployeeController extends Controller
 
     public function destroy(string $nrp)
     {
+        // Cek akses
+        if (Gate::denies('manage-employee')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil data pegawai berdasarkan NRP
         $employee = Employee::where('nrp', $nrp)->firstOrFail();
 
