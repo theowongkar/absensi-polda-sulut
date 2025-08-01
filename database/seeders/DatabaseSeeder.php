@@ -47,14 +47,13 @@ class DatabaseSeeder extends Seeder
         }
 
         // 4 User biasa dengan employee + attendance
-        for ($u = 1; $u <= 4; $u++) {
+        for ($u = 1; $u <= 20; $u++) {
             $user = User::factory()->create([
                 'role' => 'Pengguna',
             ]);
 
             $employee = Employee::factory()->create([
                 'user_id' => $user->id,
-                'status' => 'Aktif',
             ]);
 
             // Attendance untuk masing-masing user (7 hari terakhir)
