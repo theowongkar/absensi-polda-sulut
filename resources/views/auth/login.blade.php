@@ -1,4 +1,5 @@
 <x-guest-layout>
+    
     {{-- Judul Halaman --}}
     <x-slot name="title">Login</x-slot>
 
