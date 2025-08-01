@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\Dashboard\AttendanceController as DashboardAttendanceController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\EmployeeController as DashboardEmployeeController;
 
@@ -33,4 +34,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/pegawai/{nrp}/ubah', [DashboardEmployeeController::class, 'edit'])->name('dashboard.employee.edit');
     Route::put('/dashboard/pegawai/{nrp}/ubah', [DashboardEmployeeController::class, 'update'])->middleware('throttle:10,5')->name('dashboard.employee.update');
     Route::delete('/dashboard/pegawai/{nrp}/hapus', [DashboardEmployeeController::class, 'destroy'])->middleware('throttle:10,5')->name('dashboard.employee.destroy');
+
+    // Dashboard Presensi Saya
+    Route::get('/dashboard/presensi-saya', [DashboardAttendanceController::class, 'myAttendanceIndex'])->name('dashboard.my-attendance.index');
+    Route::get('/dashboard/input-presensi', [DashboardAttendanceController::class, 'myAttendanceCreate'])->name('dashboard.my-attendance.create');
+    Route::post('/dashboard/input-presensi', [DashboardAttendanceController::class, 'myAttendanceStore'])->name('dashboard.my-attendance.store');
+
+    // Dashboard Presensi
+    Route::get('/dashboard/presensi', [DashboardAttendanceController::class, 'index'])->name('dashboard.attendance.index');
+    Route::get('/dashboard/presensi/{nrp}/lihat', [DashboardAttendanceController::class, 'show'])->name('dashboard.attendance.show');
+    Route::post('/dashboard/presensi/{nrp}/tambah', [DashboardAttendanceController::class, 'store'])->name('dashboard.attendance.store');
+    Route::put('/dashboard/presensi/{nrp}/{attendanceId}/ubah', [DashboardAttendanceController::class, 'update'])->name('dashboard.attendance.update');
+    Route::delete('/dashboard/presensi/{nrp}/{attendanceId}/hapus', [DashboardAttendanceController::class, 'destroy'])->name('dashboard.attendance.destroy');
 });

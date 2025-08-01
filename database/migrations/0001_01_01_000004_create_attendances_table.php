@@ -19,7 +19,6 @@ return new class extends Migration
             $table->time('check_out')->nullable();
             $table->string('photo_check_in')->nullable();
             $table->string('photo_check_out')->nullable();
-            $table->enum('status', ['Hadir', 'Terlambat', 'Sakit', 'Tidak Hadir'])->default('Tidak Hadir');
             $table->timestamps();
 
             $table->unique(['employee_id', 'date']);

@@ -42,7 +42,6 @@ class DatabaseSeeder extends Seeder
                 'date' => $date,
                 'check_in' => '08:00:00',
                 'check_out' => '17:00:00',
-                'status' => 'Hadir',
             ]);
         }
 
@@ -65,7 +64,6 @@ class DatabaseSeeder extends Seeder
                     'date' => $date,
                     'check_in' => '08:' . rand(0, 5) . '0:00',
                     'check_out' => '17:' . rand(0, 5) . '0:00',
-                    'status' => fake()->randomElement(['Hadir', 'Terlambat', 'Sakit', 'Tidak Hadir']),
                 ]);
             }
         }

@@ -24,7 +24,6 @@ class AttendanceFactory extends Factory
             'check_out' => fake()->time('H:i:s', '17:00:00'),
             'photo_check_in' => null,
             'photo_check_out' => null,
-            'status' => fake()->randomElement(['Hadir', 'Terlambat', 'Sakit', 'Tidak Hadir']),
         ];
     }
 }

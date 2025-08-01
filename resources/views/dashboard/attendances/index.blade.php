@@ -1,7 +1,7 @@
 <x-app-layout>
 
     {{-- Judul Halaman --}}
-    <x-slot name="title">Data Pegawai</x-slot>
+    <x-slot name="title">Data Presensi Pegawai</x-slot>
 
     {{-- Bagian Pegawai --}}
     <section class="space-y-2">
@@ -9,13 +9,7 @@
         {{-- Header --}}
         <div class="bg-gray-50 rounded-lg border border-gray-300 shadow">
             <div class="p-2 space-y-2">
-                <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
-                    {{-- Tombol Tambah --}}
-                    <x-buttons.primary-button href="{{ route('dashboard.employee.create') }}"
-                        class="w-full lg:w-auto text-center bg-green-600 hover:bg-green-700">
-                        Tambah
-                    </x-buttons.primary-button>
-
+                <div class="flex flex-col lg:flex-row items-center justify-end gap-4">
                     {{-- Form Filter & Search --}}
                     <form method="GET" action="{{ route('dashboard.employee.index') }}"
                         class="w-full flex justify-end gap-1" x-data="{ openFilter: '' }">
@@ -176,17 +170,9 @@
                                 {{ \Carbon\Carbon::parse($employee->created_at)->format('d/m/Y H:i') }}
                             </td>
                             <td class="p-2 whitespace-nowrap">
-                                <div class="flex justify-center items-center gap-2">
-                                    <a href="{{ route('dashboard.employee.edit', $employee->nrp) }}"
-                                        class="text-yellow-600 hover:underline text-sm">Edit</a>
-                                    <form action="{{ route('dashboard.employee.destroy', $employee->nrp) }}"
-                                        method="POST" class="inline"
-                                        onsubmit="return confirm('Yakin ingin menghapus?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button
-                                            class="text-red-600 hover:underline text-sm cursor-pointer">Hapus</button>
-                                    </form>
+                                <div class="flex justify-center items-center">
+                                    <a href="{{ route('dashboard.attendance.show', $employee->nrp) }}"
+                                        class="text-blue-600 hover:underline text-sm">Lihat</a>
                                 </div>
                             </td>
                         </tr>

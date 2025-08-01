@@ -26,10 +26,8 @@ class DashboardController extends Controller
         $maleEmployees = Employee::where('gender', 'Laki-laki')->count();
         $femaleEmployees = Employee::where('gender', 'Perempuan')->count();
 
-        // Top 5 Karyawan Paling Aktif Tahun Ini
         $topActiveEmployees = Employee::select('employees.*', DB::raw('COUNT(attendances.id) as hadir_count'))
             ->join('attendances', 'employees.id', '=', 'attendances.employee_id')
-            ->where('attendances.status', 'Hadir')
             ->whereYear('attendances.date', $currentYear)
             ->groupBy('employees.id')
             ->orderByDesc('hadir_count')
